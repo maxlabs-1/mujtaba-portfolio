@@ -52,6 +52,20 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Custom colors for dark aesthetic theme
+				dark: {
+					DEFAULT: '#121212',
+					100: '#151515',
+					200: '#1A1F2C',
+					300: '#222222',
+					400: '#2A2A2A',
+					500: '#333333'
+				},
+				highlight: {
+					DEFAULT: '#6E56CF',
+					hover: '#7C66DB',
+					100: '#A594E0'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
