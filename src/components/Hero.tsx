@@ -46,21 +46,22 @@ const Hero = () => {
         )}></div>
       </div>
 
-      <BulbToggle isDark={isDark} onToggle={toggleTheme} />
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ duration: 0.8, delay: 0.2 }}
         className={cn(
-          "max-w-3xl mx-auto transition-all duration-500",
+          "max-w-3xl mx-auto transition-all duration-500 relative",
           !isDark && "text-shadow-glow"
         )}
       >
-        <h2 className={cn(
-          "font-semibold mb-4 transition-all duration-500",
-          isDark ? "text-accent" : "text-yellow-500"
-        )}>Hi there! I'm</h2>
+        <div className="flex items-center justify-center gap-3">
+          <h2 className={cn(
+            "font-semibold mb-4 transition-all duration-500",
+            isDark ? "text-accent" : "text-yellow-500"
+          )}>Hi there! I'm</h2>
+          <BulbToggle isDark={isDark} onToggle={toggleTheme} />
+        </div>
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           <span className={cn(
             "transition-all duration-500",
