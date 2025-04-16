@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -15,7 +16,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-dark min-h-screen">
+    <div className="bg-dark min-h-screen dark:bg-dark light:bg-white">
       <CursorEffect />
       <Header />
       <main>

@@ -10,7 +10,8 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
-  image: string; 
+  image: string;
+  bgImage: string;
   links: {
     github?: string;
     live?: string;
@@ -24,6 +25,7 @@ const projectsData: Project[] = [
     description: "Designed and implemented a containerized microservices architecture using Kubernetes, Docker, and Helm charts with automated CI/CD pipelines.",
     tags: ["Kubernetes", "Docker", "CI/CD", "Helm", "Terraform"],
     image: "bg-gradient-to-br from-blue-900/40 to-blue-600/20",
+    bgImage: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
     links: {
       github: "https://github.com",
       live: "https://example.com"
@@ -35,6 +37,7 @@ const projectsData: Project[] = [
     description: "Developed cloud-native infrastructure with auto-scaling capabilities using AWS services, Infrastructure as Code, and monitoring solutions.",
     tags: ["AWS", "Terraform", "CloudWatch", "Auto-scaling", "IaC"],
     image: "bg-gradient-to-br from-green-900/40 to-teal-600/20",
+    bgImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
     links: {
       github: "https://github.com"
     }
@@ -45,6 +48,7 @@ const projectsData: Project[] = [
     description: "Created comprehensive CI/CD pipelines with automated testing, security scanning, and deployment strategies for critical applications.",
     tags: ["Jenkins", "GitHub Actions", "Docker", "Testing", "GitOps"],
     image: "bg-gradient-to-br from-purple-900/40 to-indigo-600/20",
+    bgImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
     links: {
       github: "https://github.com",
       live: "https://example.com"
@@ -56,6 +60,30 @@ const projectsData: Project[] = [
     description: "Implemented a complete monitoring and alerting system using Prometheus, Grafana, and ELK stack for infrastructure and application metrics.",
     tags: ["Prometheus", "Grafana", "ELK", "Alerting", "Monitoring"],
     image: "bg-gradient-to-br from-red-900/40 to-orange-600/20",
+    bgImage: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
+    links: {
+      github: "https://github.com"
+    }
+  },
+  {
+    id: 5,
+    title: "Multi-Cloud Resource Management",
+    description: "Built a centralized platform for managing resources across multiple cloud providers with automated provisioning and cost optimization.",
+    tags: ["Multi-Cloud", "AWS", "Azure", "GCP", "Terraform"],
+    image: "bg-gradient-to-br from-pink-900/40 to-rose-600/20",
+    bgImage: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
+    links: {
+      github: "https://github.com",
+      live: "https://example.com"
+    }
+  },
+  {
+    id: 6,
+    title: "Security Compliance Automation",
+    description: "Developed automated security compliance checks and remediation workflows for cloud infrastructure using policy as code.",
+    tags: ["Security", "Compliance", "AWS", "Policy-as-Code", "Automation"],
+    image: "bg-gradient-to-br from-violet-900/40 to-purple-600/20",
+    bgImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
     links: {
       github: "https://github.com"
     }
@@ -92,10 +120,19 @@ const Projects = () => {
                 onMouseEnter={() => setActiveProject(project.id)}
                 onMouseLeave={() => setActiveProject(null)}
               >
-                <div className={`h-48 w-full ${project.image} flex items-center justify-center`}>
-                  <h3 className="text-xl font-bold text-white text-center px-4">
-                    {project.title}
-                  </h3>
+                <div 
+                  className="h-48 w-full relative overflow-hidden"
+                  style={{
+                    backgroundImage: `url(${project.bgImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                >
+                  <div className={`absolute inset-0 ${project.image} flex items-center justify-center`}>
+                    <h3 className="text-xl font-bold text-white text-center px-4 z-10">
+                      {project.title}
+                    </h3>
+                  </div>
                 </div>
                 
                 <div className="p-6">

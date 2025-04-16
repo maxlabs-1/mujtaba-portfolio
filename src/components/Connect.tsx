@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MessageSquare, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Mail, MessageSquare, ExternalLink, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Connect = () => {
@@ -16,6 +16,18 @@ const Connect = () => {
       icon: <Linkedin className="w-5 h-5" />,
       url: "https://linkedin.com/in/",
       color: "hover:text-white hover:bg-[#0077b5]"
+    },
+    {
+      name: "X (Twitter)",
+      icon: <Twitter className="w-5 h-5" />,
+      url: "https://twitter.com/",
+      color: "hover:text-white hover:bg-[#000]"
+    },
+    {
+      name: "Dev.to",
+      icon: <ExternalLink className="w-5 h-5" />,
+      url: "https://dev.to/",
+      color: "hover:text-white hover:bg-[#0a0a0a]"
     },
     {
       name: "Medium",
