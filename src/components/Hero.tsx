@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import BulbToggle from "./BulbToggle";
+import { cn } from "@/lib/utils";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
