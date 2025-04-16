@@ -84,6 +84,28 @@
     mix-blend-mode: difference;
     transition: transform 0.2s;
   }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 15px rgba(255, 255, 0, 0.3);
+  }
+
+  .light-effect {
+    position: relative;
+  }
+
+  .light-effect::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle at center, rgba(255, 255, 0, 0.15), transparent 70%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .light-effect.active::after {
+    opacity: 1;
+  }
 }
 
 /* Custom Mouse Cursor Animation */

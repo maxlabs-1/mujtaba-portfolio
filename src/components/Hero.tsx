@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import BulbToggle from "./BulbToggle";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     setIsVisible(true);
@@ -17,27 +19,63 @@ const Hero = () => {
     }
   };
 
+  const toggleTheme = () => {
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+    setIsDark(!isDark);
+  };
+
   return (
     <section className="relative h-screen flex flex-col justify-center items-center text-center px-4">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-300/50 to-dark/80"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(110,86,207,0.15),transparent_65%)]"></div>
+        <div className={cn(
+          "absolute inset-0 transition-all duration-500",
+          isDark 
+            ? "bg-gradient-to-b from-dark-300/50 to-dark/80" 
+            : "bg-gradient-to-b from-yellow-50/50 to-white/80"
+        )}></div>
+        <div className={cn(
+          "absolute inset-0 transition-all duration-500",
+          isDark
+            ? "bg-[radial-gradient(circle_at_center,rgba(110,86,207,0.15),transparent_65%)]"
+            : "bg-[radial-gradient(circle_at_center,rgba(255,255,0,0.15),transparent_65%)]"
+        )}></div>
       </div>
+
+      <BulbToggle isDark={isDark} onToggle={toggleTheme} />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="max-w-3xl mx-auto"
+        className={cn(
+          "max-w-3xl mx-auto transition-all duration-500",
+          !isDark && "text-shadow-glow"
+        )}
       >
-        <h2 className="text-accent font-semibold mb-4">Hi there! I'm</h2>
+        <h2 className={cn(
+          "font-semibold mb-4 transition-all duration-500",
+          isDark ? "text-accent" : "text-yellow-500"
+        )}>Hi there! I'm</h2>
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          <span className="text-white">Mujtaba Ahmad</span>
+          <span className={cn(
+            "transition-all duration-500",
+            isDark ? "text-white" : "text-gray-800"
+          )}>Mujtaba Ahmad</span>
         </h1>
-        <p className="text-2xl md:text-3xl text-gray-300 mb-8">
+        <p className={cn(
+          "text-2xl md:text-3xl mb-8 transition-all duration-500",
+          isDark ? "text-gray-300" : "text-gray-600"
+        )}>
           DevOps Engineer
         </p>
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12">
+        <p className={cn(
+          "text-lg md:text-xl max-w-2xl mx-auto mb-12 transition-all duration-500",
+          isDark ? "text-gray-400" : "text-gray-600"
+        )}>
           I specialize in streamlining development processes, implementing CI/CD pipelines, 
           and managing cloud infrastructure to ensure seamless software delivery.
         </p>
@@ -51,11 +89,19 @@ const Hero = () => {
       >
         <button 
           onClick={scrollToNext}
-          className="flex flex-col items-center text-gray-400 hover:text-accent transition-colors"
+          className={cn(
+            "flex flex-col items-center transition-colors",
+            isDark 
+              ? "text-gray-400 hover:text-accent" 
+              : "text-gray-600 hover:text-yellow-500"
+          )}
           aria-label="Scroll Down"
         >
           <span className="mb-2 text-sm">Scroll Down</span>
-          <ChevronDown className="w-6 h-6 animate-bounce text-accent" />
+          <ChevronDown className={cn(
+            "w-6 h-6 animate-bounce",
+            isDark ? "text-accent" : "text-yellow-500"
+          )} />
         </button>
       </motion.div>
     </section>
