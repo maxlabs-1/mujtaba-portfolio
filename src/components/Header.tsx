@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Download, Menu, X, Sun, Moon } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -33,7 +34,7 @@ const Header = () => {
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-dark-300/95 backdrop-blur-md py-3 shadow-md" : "bg-transparent py-5"
+        scrolled ? "bg-dark-300/95 dark:bg-dark-300/95 light:bg-white/95 backdrop-blur-md py-3 shadow-md" : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
@@ -44,14 +45,15 @@ const Header = () => {
           className="flex items-center gap-4"
         >
           <a href="#" className="text-2xl font-bold text-gradient">Mujtaba Ahmad</a>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="text-white hover:bg-dark-400"
-          >
-            {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600">{isDark ? 'Dark' : 'Light'}</span>
+            <Switch
+              checked={isDark}
+              onCheckedChange={toggleTheme}
+              className="data-[state=checked]:bg-accent data-[state=unchecked]:bg-gray-400"
+            />
+            <span className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600 hidden sm:inline">{isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}</span>
+          </div>
         </motion.div>
 
         {/* Desktop Navigation */}
@@ -61,12 +63,12 @@ const Header = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="hidden md:flex items-center space-x-8"
         >
-          <a href="#about" className="text-white hover:text-accent transition-colors">About</a>
-          <a href="#projects" className="text-white hover:text-accent transition-colors">Projects</a>
-          <a href="#contact" className="text-white hover:text-accent transition-colors">Contact</a>
+          <a href="#about" className="text-white dark:text-white light:text-dark hover:text-accent transition-colors">About</a>
+          <a href="#projects" className="text-white dark:text-white light:text-dark hover:text-accent transition-colors">Projects</a>
+          <a href="#contact" className="text-white dark:text-white light:text-dark hover:text-accent transition-colors">Contact</a>
           <Button
             variant="outline"
-            className="bg-transparent border border-accent text-white hover:bg-accent/20 hover-glow flex items-center gap-2"
+            className="bg-transparent border border-accent text-white dark:text-white light:text-dark hover:bg-accent/20 hover-glow flex items-center gap-2"
             size="sm"
             onClick={() => window.open('/resume.pdf', '_blank')}
           >
@@ -80,7 +82,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-white hover:bg-dark-400"
+            className="text-white dark:text-white light:text-dark hover:bg-dark-400"
           >
             {mobileMenuOpen ? <X /> : <Menu />}
           </Button>
@@ -94,33 +96,33 @@ const Header = () => {
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-dark-400 border-t border-gray-800"
+          className="md:hidden dark:bg-dark-400 light:bg-gray-100 border-t dark:border-gray-800 light:border-gray-200"
         >
           <div className="container mx-auto py-4 px-6 flex flex-col space-y-4">
             <a 
               href="#about" 
-              className="text-white py-2 hover:text-accent transition-colors"
+              className="dark:text-white light:text-dark py-2 hover:text-accent transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
             </a>
             <a 
               href="#projects" 
-              className="text-white py-2 hover:text-accent transition-colors"
+              className="dark:text-white light:text-dark py-2 hover:text-accent transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Projects
             </a>
             <a 
               href="#contact" 
-              className="text-white py-2 hover:text-accent transition-colors"
+              className="dark:text-white light:text-dark py-2 hover:text-accent transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
             </a>
             <Button
               variant="outline"
-              className="bg-transparent border border-accent text-white hover:bg-accent/20 w-full flex items-center justify-center gap-2"
+              className="bg-transparent border border-accent dark:text-white light:text-dark hover:bg-accent/20 w-full flex items-center justify-center gap-2"
               size="sm"
               onClick={() => {
                 window.open('/resume.pdf', '_blank');

@@ -16,7 +16,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-dark min-h-screen dark:bg-dark light:bg-white">
+    <div className="min-h-screen dark:bg-dark light:bg-white text-white dark:text-white light:text-gray-800">
       <CursorEffect />
       <Header />
       <main>
