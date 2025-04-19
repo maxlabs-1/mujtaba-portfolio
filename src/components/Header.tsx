@@ -2,11 +2,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Download, Menu, X } from "lucide-react";
+import { Download, Menu, X, LightbulbOff, Lightbulb } from "lucide-react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLightOn, setIsLightOn] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +35,25 @@ const Header = () => {
           className="flex items-center gap-4"
         >
           <a href="#" className="text-2xl font-bold text-gradient">Mujtaba Ahmad</a>
+        </motion.div>
+
+        {/* Centered Bulb Toggle */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute left-1/2 transform -translate-x-1/2 flex items-center"
+        >
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsLightOn(!isLightOn)}
+            className="text-white hover:bg-accent/20 hover-glow"
+          >
+            {isLightOn ? 
+              <Lightbulb className="w-6 h-6 text-yellow-400" /> : 
+              <LightbulbOff className="w-6 h-6" />
+            }
+          </Button>
         </motion.div>
 
         {/* Desktop Navigation */}

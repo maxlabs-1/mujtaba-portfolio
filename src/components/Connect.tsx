@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MessageSquare, ExternalLink, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Connect = () => {
@@ -27,7 +27,8 @@ const Connect = () => {
       name: "Dev.to",
       icon: <ExternalLink className="w-5 h-5" />,
       url: "https://dev.to/",
-      color: "hover:text-white hover:bg-[#0a0a0a]"
+      color: "hover:text-white hover:bg-[#0a0a0a]",
+      shortLabel: "Dev"
     },
     {
       name: "Medium",
@@ -58,7 +59,7 @@ const Connect = () => {
             <p className="text-gray-400 mb-6">
               Feel free to reach out through any of these platforms. I'm always open to discussing new projects, opportunities or partnerships.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {connectOptions.map((option) => (
                 <motion.a
                   key={option.name}
@@ -70,7 +71,7 @@ const Connect = () => {
                   className={`inline-flex items-center gap-2 py-2 px-4 rounded-lg border border-gray-700 bg-dark-300 text-gray-300 transition-colors ${option.color} hover-glow`}
                 >
                   {option.icon}
-                  {option.name}
+                  {option.shortLabel || option.name}
                 </motion.a>
               ))}
             </div>
