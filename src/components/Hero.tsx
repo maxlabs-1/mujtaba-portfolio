@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import BulbToggle from "./BulbToggle";
 import { cn } from "@/lib/utils";
 
 const Hero = () => {
@@ -18,15 +17,6 @@ const Hero = () => {
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: "smooth" });
     }
-  };
-
-  const toggleTheme = () => {
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
-    setIsDark(!isDark);
   };
 
   return (
@@ -51,17 +41,14 @@ const Hero = () => {
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ duration: 0.8, delay: 0.2 }}
         className={cn(
-          "max-w-3xl mx-auto transition-all duration-500 relative",
+          "max-w-3xl mx-auto transition-all duration-500",
           !isDark && "text-shadow-glow"
         )}
       >
-        <div className="flex items-center justify-center gap-3">
-          <h2 className={cn(
-            "font-semibold mb-4 transition-all duration-500",
-            isDark ? "text-accent" : "text-yellow-500"
-          )}>Hi there! I'm</h2>
-          <BulbToggle isDark={isDark} onToggle={toggleTheme} />
-        </div>
+        <h2 className={cn(
+          "font-semibold mb-4 transition-all duration-500",
+          isDark ? "text-accent" : "text-yellow-500"
+        )}>Hi there! I'm</h2>
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           <span className={cn(
             "transition-all duration-500",
