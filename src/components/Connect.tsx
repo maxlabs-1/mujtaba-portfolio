@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Twitter, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, ExternalLink, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Connect = () => {
