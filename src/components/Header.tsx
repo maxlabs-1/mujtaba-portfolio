@@ -21,6 +21,13 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
 
+  const toggleTheme = () => {
+    setIsLightOn(!isLightOn);
+    // Toggle the dark/light classes on the html element
+    document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('light');
+  };
+
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -46,11 +53,15 @@ const Header = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setIsLightOn(!isLightOn)}
-            className="text-white hover:bg-accent/20 hover-glow"
+            onClick={toggleTheme}
+            className={`transition-all duration-300 ${
+              isLightOn 
+                ? "text-yellow-400 hover:bg-yellow-400/20" 
+                : "text-gray-400 hover:bg-accent/20"
+            } hover-glow`}
           >
             {isLightOn ? 
-              <Lightbulb className="w-6 h-6 text-yellow-400" /> : 
+              <Lightbulb className="w-6 h-6" /> : 
               <LightbulbOff className="w-6 h-6" />
             }
           </Button>

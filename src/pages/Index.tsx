@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -11,12 +10,12 @@ import CursorEffect from "@/components/CursorEffect";
 
 const Index = () => {
   useEffect(() => {
-    // Ensure dark mode is always on
+    // Initialize with dark mode
     document.documentElement.classList.add('dark');
   }, []);
 
   return (
-    <div className="min-h-screen dark:bg-dark light:bg-white text-white dark:text-white light:text-gray-800">
+    <div className="min-h-screen bg-gradient-to-b dark:from-dark dark:to-dark-400 light:from-white light:to-gray-100 text-white dark:text-white light:text-gray-800 transition-colors duration-300">
       <CursorEffect />
       <Header />
       <main>
