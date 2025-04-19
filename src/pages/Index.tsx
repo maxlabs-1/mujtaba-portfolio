@@ -11,7 +11,7 @@ import CursorEffect from "@/components/CursorEffect";
 
 const Index = () => {
   useEffect(() => {
-    // Set dark mode by default
+    // Ensure dark mode is always on
     document.documentElement.classList.add('dark');
   }, []);
 

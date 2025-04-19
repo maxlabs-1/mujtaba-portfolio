@@ -2,13 +2,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Download, Menu, X, Sun, Moon } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
+import { Download, Menu, X } from "lucide-react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,15 +19,6 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
-
-  const toggleTheme = () => {
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
-    setIsDark(!isDark);
-  };
 
   return (
     <header
@@ -45,15 +34,6 @@ const Header = () => {
           className="flex items-center gap-4"
         >
           <a href="#" className="text-2xl font-bold text-gradient">Mujtaba Ahmad</a>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600">{isDark ? 'Dark' : 'Light'}</span>
-            <Switch
-              checked={isDark}
-              onCheckedChange={toggleTheme}
-              className="data-[state=checked]:bg-accent data-[state=unchecked]:bg-gray-400"
-            />
-            <span className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600 hidden sm:inline">{isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}</span>
-          </div>
         </motion.div>
 
         {/* Desktop Navigation */}
