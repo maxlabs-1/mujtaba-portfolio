@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const isDark = true; // Hardcoded to dark mode
 
   useEffect(() => {
     setIsVisible(true);
