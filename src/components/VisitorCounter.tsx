@@ -19,16 +19,18 @@ const VisitorCounter = () => {
       const data = await response.json();
       return data.count;
     },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: "Failed to fetch visitor count. Please try again later.",
-        variant: "destructive"
-      });
-      console.error('Visitor counter error:', error);
-    },
     retry: 3,
     staleTime: 60000, // Cache the result for 1 minute
+    meta: {
+      onError: (error: Error) => {
+        toast({
+          title: "Error",
+          description: "Failed to fetch visitor count. Please try again later.",
+          variant: "destructive"
+        });
+        console.error('Visitor counter error:', error);
+      }
+    }
   });
 
   useEffect(() => {
@@ -36,6 +38,18 @@ const VisitorCounter = () => {
       setCount(data);
     }
   }, [data]);
+
+  // Display an error message if there was an error
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to fetch visitor count. Please try again later.",
+        variant: "destructive"
+      });
+      console.error('Visitor counter error:', error);
+    }
+  }, [error]);
 
   return (
     <motion.div
