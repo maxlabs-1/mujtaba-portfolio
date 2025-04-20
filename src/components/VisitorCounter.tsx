@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import { Users } from 'lucide-react';
+import { toast } from '@/components/ui/use-toast';
 
 const VisitorCounter = () => {
   const [count, setCount] = useState<number>(0);
@@ -18,6 +19,16 @@ const VisitorCounter = () => {
       const data = await response.json();
       return data.count;
     },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: "Failed to fetch visitor count. Please try again later.",
+        variant: "destructive"
+      });
+      console.error('Visitor counter error:', error);
+    },
+    retry: 3,
+    staleTime: 60000, // Cache the result for 1 minute
   });
 
   useEffect(() => {
@@ -31,10 +42,12 @@ const VisitorCounter = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex items-center justify-center gap-2 text-gray-400"
+      className="flex items-center justify-center gap-2 text-gray-400 hover:text-gray-300 transition-colors"
     >
-      <Users size={16} />
-      <span>{isLoading ? "Loading..." : `${count} visitors`}</span>
+      <Users size={16} className="animate-pulse" />
+      <span className="font-medium">
+        {isLoading ? "Loading..." : `${count} visitors`}
+      </span>
     </motion.div>
   );
 };
