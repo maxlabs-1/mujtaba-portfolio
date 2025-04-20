@@ -1,5 +1,6 @@
 
 import { motion } from "framer-motion";
+import VisitorCounter from "./VisitorCounter";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -17,7 +18,8 @@ const Footer = () => {
           <p className="text-gray-400 mb-4 md:mb-0">
             &copy; {currentYear} Mujtaba Ahmad. All rights reserved.
           </p>
-          <p className="text-gray-500">
+          <VisitorCounter />
+          <p className="text-gray-500 mt-4 md:mt-0">
             DevOps Engineer | Lahore, Pakistan
           </p>
         </motion.div>
